@@ -21,8 +21,19 @@ public class symbolTester {
 	public tradeArray getTrades() {
 		return mTrades;
 	}
-
+//This method will scan the previous 60th days of High's and Low's
 	private boolean pattern(int index) {
+		double prevHigh = mData.elementAt(index).High();
+		double prevLow = mData.elementAt(index).Low();
+		 	for (int j = 60; j > 0 ;j--) {
+		 		boolean pH = (prevHigh >= mData.elementAt(j-1).High());
+		 		boolean pL = (prevLow <= mData.elementAt(j-1).Low());
+				if(!pH && !pL ) {
+					return false;
+				}
+				index--;
+			}
+		
 		return true; //or false
 	}
 
