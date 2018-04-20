@@ -14,7 +14,7 @@
  * 
  */
 public class bigMain {
-public static void main(String[] args) {
+	public static void main(String[] args) {
 		double[] target = new double[4];
 		target[0] = 0.01;
 		target[1] = 0.02;
@@ -27,26 +27,25 @@ public static void main(String[] args) {
 		loss[3] = 0.1;
 		String path = "/Users/jorgebarrameda/Desktop/Data/"; //your path here 
 		//if you use Linux "/home/yourhome/.../.../"
-for (int i =0; i<4; i++) {//test all combinations of loss and target
-		for (int j =0; j<4; j++){
-			Simulator sim = new Simulator(path, "Stocks.txt", loss[i], target[j]);
-			//First call object you create will be 
-			// Simulator sim = new Simulator("C:\\ProfOmar286_18\\Data\\", "stocks.txt", 0.01, 0.01);  
-			sim.run();
-			
+		for (int i = 0; i < 4; i++) {//test all combinations of loss and target
+			for (int j = 0; j < 4; j++) {
+				Simulator sim = new Simulator(path, "Stocks.txt", loss[i], target[j]);
+				//First call object you create will be 
+				// Simulator sim = new Simulator("C:\\ProfOmar286_18\\Data\\", "stocks.txt", 0.01, 0.01);  
+				sim.run();
 
-			tradeArray Tr = sim.getTrades();
+				tradeArray Tr = sim.getTrades();
 				//print the stats
-			System.out.println(loss[i]+", " + target[j] + Tr.getStats().toString());
-			//display the stats for these parameters loss[i], target[j]
-			//tradeArray Tr = sim.getTrades();
-			//print the stats
-			//System.out.println(loss[i]+", " + target[j] + Tr.getStats().toString());
-			Simulator simETF = new Simulator(path, "ETFs.txt", loss[i], target[j]);
-			simETF.run();
-			Tr = simETF.getTrades();
-			//print the stats
-			System.out.println(loss[i]+", " + target[j] + Tr.getStats().toString());
+				System.out.println(loss[i] + ", " + target[j] + Tr.getStats().toString());
+				//display the stats for these parameters loss[i], target[j]
+				//tradeArray Tr = sim.getTrades();
+				//print the stats
+				//System.out.println(loss[i]+", " + target[j] + Tr.getStats().toString());
+				Simulator simETF = new Simulator(path, "ETFs.txt", loss[i], target[j]);
+				simETF.run();
+				Tr = simETF.getTrades();
+				//print the stats
+				System.out.println(loss[i] + ", " + target[j] + Tr.getStats().toString());
 				//display the stats for these parameters loss[i], target[j]
 				//tradeArray Tr1 = ETFs.getTrades();
 				//print the stats
@@ -56,23 +55,22 @@ for (int i =0; i<4; i++) {//test all combinations of loss and target
 				//System.out.println(loss[i]+", " + target[j] + Tr.getStats().toString());		
 			}
 		}
-//we need to test what if we exit the trade the same day as we enter it at the close 
-//we call that loss=0, target = 0
-	Simulator sim = new Simulator(path, "Stocks.txt", 0.0, 0.0);
-	sim.run();
+		//we need to test what if we exit the trade the same day as we enter it at the close 
+		//we call that loss=0, target = 0
+		Simulator sim = new Simulator(path, "Stocks.txt", 0.0, 0.0);
+		sim.run();
 		//display the stats for these parameters loss[i], target[j]
-	tradeArray Tr = sim.getTrades();
+		tradeArray Tr = sim.getTrades();
 		//print the stats
-	System.out.println(0.1+", " + 0.01 + Tr.getStats().toString());
-	Simulator simETF = new Simulator(path, "ETFs.txt", 0.0, 0.0);
-	simETF.run();
+		System.out.println(0.1 + ", " + 0.01 + Tr.getStats().toString());
+		Simulator simETF = new Simulator(path, "ETFs.txt", 0.0, 0.0);
+		simETF.run();
 		//display the stats for these parameters loss[i], target[j]
-	tradeArray Tr1 = simETF.getTrades();
-	//print the stats
-		System.out.println(0.1+", " + 0.01 + Tr1.getStats().toString());
+		tradeArray Tr1 = simETF.getTrades();
+		//print the stats
+		System.out.println(0.1 + ", " + 0.01 + Tr1.getStats().toString());
 		//Print stats for the combination add the trades together
 		Tr.addArray(Tr1);
-		System.out.println(0.1+", " + 0.01 + Tr.getStats().toString());	
+		System.out.println(0.1 + ", " + 0.01 + Tr.getStats().toString());
 	}
 }
-

@@ -1,3 +1,4 @@
+
 /*Design an code a class barArray as a wrapper to a vector of bars
 
  * it will have the following private member variables
@@ -14,32 +15,37 @@
  */
 //TODO
 import java.util.*;
+
 //
 public class barArray {
 
-//has member Vector of bars
-Vector<Bar> list;
+	//has member Vector of bars
+	Vector<Bar> list;
+
 	public barArray() {
 		list = new Vector<Bar>(4000);
 	}
+
 	public barArray(int s) {
 		list = new Vector<Bar>(s);
 	}
+
 	public barArray(int s, int incr) {
 		list = new Vector<Bar>(s, incr);
 	}
-//method to insert a bar at specific index
+
+	//method to insert a bar at specific index
 	public void insert(Bar b) {
-//call the Vector method insetElement
+		//call the Vector method insetElement
 		list.addElement(b);
 	}
-	public Bar elementAt(int index){
+
+	public Bar elementAt(int index) {
 		return list.elementAt(index);
 	}
-	
+
 	public int size() {
 		return list.size();
 	}
-
 
 }
