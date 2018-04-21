@@ -61,18 +61,20 @@ public class tradeArray {
 			st.numberDays += this.At(i).getHoldingPeriod();
 			if (this.At(i).percentPL() >= 0) {
 				st.totalWinnings += this.At(i).percentPL();
-				st.numberWinners++;
+				st.numberWinners += 1;
 				if (this.At(i).getDir() == Direction.LONG) {
 					st.numberLong++;
 					st.longWinners++;
 					st.totalLongWinnings += this.At(i).percentPL();
 					st.numberLongDays += this.At(i).getHoldingPeriod();
+					st.totalWinnings += this.At(i).PL();
 
 				} else {
 					st.numberShort++;
 					st.shortWinners++;
 					st.totalShortWinnings += this.At(i).percentPL();
 					st.numberShortDays += this.At(i).getHoldingPeriod();
+				
 				}
 			} else {//it is a loser
 				st.numberLosers++;
@@ -82,6 +84,7 @@ public class tradeArray {
 					st.longLosers++;
 					st.totalLongLoss += this.At(i).percentPL();
 					st.numberLongDays += this.At(i).getHoldingPeriod();
+					st.totalShortLoss += this.At(i).percentPL();
 
 				} else {
 					st.numberShort++;

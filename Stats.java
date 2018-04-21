@@ -28,12 +28,12 @@ public class Stats {
 			numberShortDays = 1;
 		if (numberOfTrades == 0)
 			numberOfTrades = 1;
-		String s = numberOfTrades + "," + "PercentWinners: " + (numberWinners / numberOfTrades * 100) + ","
-				+ "AverageProfit: " + (totalWinnings + totalLoss) / numberOfTrades + numberLong + ","
+		String s = "NumOfTrades:"+numberOfTrades + "," + "PercentWinners: " + (numberWinners / numberOfTrades * 100) + ","
+				+ "AverageProfit: " + (totalWinnings - totalLoss) / (numberOfTrades + numberLong) + ","
 				+ "Percent Longwinners: " + (numberLong / numberLongDays * 100) + " ," + "averageProfitWinner: "
-				+ totalLongWinnings + totalLongLoss / numberLongDays + ", " + numberShort + ","
+				+ (totalLongWinnings - totalLongLoss / numberLongDays) + ", "+"numOfShort:" + numberShort + ","
 				+ "Percent Shortwinners: " + (numberShort / numberShortDays * 100) + "," + "averageProfitShort: "
-				+ totalShortWinnings + totalShortLoss / numberShortDays + "," + "average Holding Period: "
+				+ (totalShortWinnings - totalShortLoss / numberShortDays) + "," + "average Holding Period: "
 				+ numberDays / numberOfTrades;
 
 		return s;

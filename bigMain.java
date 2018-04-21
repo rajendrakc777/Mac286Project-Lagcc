@@ -36,7 +36,7 @@ public class bigMain {
 
 				tradeArray Tr = sim.getTrades();
 				//print the stats
-				System.out.println(loss[i] + ", " + target[j] + Tr.getStats().toString());
+				System.out.println(loss[i] + ", " + target[j] + "," + Tr.getStats().toString());
 				//display the stats for these parameters loss[i], target[j]
 				//tradeArray Tr = sim.getTrades();
 				//print the stats
@@ -45,7 +45,7 @@ public class bigMain {
 				simETF.run();
 				Tr = simETF.getTrades();
 				//print the stats
-				System.out.println(loss[i] + ", " + target[j] + Tr.getStats().toString());
+				System.out.println(loss[i] + ", " + target[j] + "," + Tr.getStats().toString());
 				//display the stats for these parameters loss[i], target[j]
 				//tradeArray Tr1 = ETFs.getTrades();
 				//print the stats
