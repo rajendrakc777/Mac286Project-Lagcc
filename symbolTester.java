@@ -69,7 +69,7 @@ public class symbolTester {
 				if (entryPrice * (1 + trade.getTarget()) > currentBar.High()) {
 					trade.close(currentBar.getDate(), currentBar.High());
 					return trade;
-				} else if (currentBar.Low() < entryPrice - entryPrice * (1 + trade.getStopLoss())) {
+				} else if (currentBar.Low() < entryPrice - entryPrice * trade.getStopLoss()) {
 					// Reached our Stop loss
 					trade.close(currentBar.getDate(), currentBar.Low());
 					return trade;
