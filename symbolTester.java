@@ -54,7 +54,9 @@ for(int i = index+1; i<Math.min(index + 2, mData.size()); i++) {
 private Trade findClose(Trade trade, int index) {
 int size = mData.size();
 double entryPrice = trade.getEntryPrice();
+double exitPrice = trade.getExitPrice();
 boolean isLong = trade.getDir() == Direction.LONG;
+boolean isShort = trade.getDir() == Direction.SHORT;
 
 // Search for a bar that reaches/matches our target or loss
 // if we're at the end of the file (mData.size()), close immediately.
@@ -64,10 +66,10 @@ boolean isLong = trade.getDir() == Direction.LONG;
 		if (isLong) {
 			// Using total amount
 			//We reached our Long target
-			if (entryPrice * 1 + trade.getTarget() > currentBar.High()) {
+			if (currentBar.High() >= entryPrice * (1 + trade.getTarget())) {
 				trade.close(currentBar.getDate(), currentBar.High());
 				return trade;
-			} else if (currentBar.Low() < entryPrice - entryPrice * 1 + trade.getStopLoss()) {
+			} else if (currentBar.Low() <= entryPrice - entryPrice * trade.getStopLoss()){
 				// Reached our Stop loss
 				trade.close(currentBar.getDate(), currentBar.Low());
 				return trade;
@@ -75,6 +77,12 @@ boolean isLong = trade.getDir() == Direction.LONG;
 		} else {
 			
 // TODO: Make conditions for SHORT trade
+			if(isShort) {
+				//reached our short target
+				if(currentBar.Low() >= exitPrice) {
+					return trade;
+				}
+			}
 		}
 		
 		if (i == size - 1) {
@@ -147,6 +155,7 @@ if (trade != null) {
 //need to check if we need try-catch. It has some syntax error; needs checking.
 //also need to ask prof if we need it and which class to put it in. but
 //for now placing it here.
+
 /*public void tradeWrite(){
 String content = "Trade content to be written";
 File file = new File("Trades.csv");
