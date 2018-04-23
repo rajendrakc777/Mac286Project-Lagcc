@@ -21,14 +21,14 @@ for (int i = 0; i < 4; i++) {//test all combinations of loss and target
 
 		tradeArray Tr = sim.getTrades();
 		//print the stats
-		System.out.println(loss[i] + ", " + target[j] + "," + Tr.getStats().toString());
+		System.out.println("Loss:"+loss[i] + ", " +"Target:"+target[j] + "," + Tr.getStats().toString());
 		
-		Simulator simETF = new Simulator(path, "ETFs.txt", loss[i], target[j]);
-		simETF.run();
+		//Simulator simETF = new Simulator(path, "ETFs.txt", loss[i], target[j]);
+		//simETF.run();
 		
-		Tr = simETF.getTrades();
+		//Tr = simETF.getTrades();
 		//print the stats
-		System.out.println(loss[i] + ", " + target[j] + "," + Tr.getStats().toString());
+		//System.out.println("Loss:"+loss[i] + ", " + "Target:"+target[j] + "," + Tr.getStats().toString());
 				
 	}
 }
@@ -42,19 +42,19 @@ sim.run();
 tradeArray Tr = sim.getTrades();
 
 //print the stats
-System.out.println(0.1 + ", " + 0.01 + Tr.getStats().toString());
+System.out.println("Loss:"+0.1 + ", " +"Target:" +0.01 + Tr.getStats().toString());
 
-Simulator simETF = new Simulator(path, "ETFs.txt", 0.0, 0.0);
-simETF.run();
+//Simulator simETF = new Simulator(path, "ETFs.txt", 0.0, 0.0);
+//simETF.run();
 
 //display the stats for these parameters loss[i], target[j]
-tradeArray Tr1 = simETF.getTrades();
+//tradeArray Tr1 = simETF.getTrades();
 
 //print the stats
-System.out.println(0.1 + ", " + 0.01 + Tr1.getStats().toString());
+//System.out.println(0.1 + ", " + 0.01 + Tr1.getStats().toString());
 
 //Print stats for the combination add the trades together
-Tr.addArray(Tr1);
-System.out.println(0.1 + ", " + 0.01 + Tr.getStats().toString());
+//Tr.addArray(Tr1);
+//System.out.println(0.1 + ", " + 0.01 + Tr.getStats().toString());
 	}
 }
