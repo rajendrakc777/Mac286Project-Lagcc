@@ -77,13 +77,14 @@ boolean isShort = trade.getDir() == Direction.SHORT;
 		} else {
 			
 // TODO: Make conditions for SHORT trade
+//if currentBar low is higher than next day low, skip that day 
 			if(isShort) {
-				//reached our short target
+				//reached our short loss,this might wrong
 				if(currentBar.Low() >= exitPrice) {
 					return trade;
 				}
 			}
-		}
+		} 
 		
 		if (i == size - 1) {
 			trade.close(currentBar.getDate(), currentBar.Close());
