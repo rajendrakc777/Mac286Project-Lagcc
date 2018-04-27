@@ -20,8 +20,8 @@ for (int i = 0; i < 4; i++) {//test all combinations of loss and target
 	    sim.run();
 
 		tradeArray Tr = sim.getTrades();
-		//print the stats
-		System.out.println("Loss:"+loss[i] + ", " +"Target:"+target[j] +" " + "\tSymbol: " + Tr.getStats().toString());
+		//print the stats; put the company symbol too
+		System.out.println("Loss:"+loss[i] + ", " +"Target:"+target[j] +","+ Tr.getStats().toString());
 		
 		//Simulator simETF = new Simulator(path, "ETFs.txt", loss[i], target[j]);
 		//simETF.run();

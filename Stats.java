@@ -46,7 +46,7 @@ String s = "\tNumOfTrades:"+numberOfTrades + "," + "\tWinners:" + (numberWinners
 		+ "\tAvrgProfit: " +df.format(Averageprofit)+ ","+ "\tLongwinners: " + (numberLong / numberLongDays * 100)+"%" + 
 		" ," + "\tAvrgProfitWinner: "+ df.format(AverageProfitWinners) + ", "+/*"\tNumOfShort:" + numberShort + ","
 		+*/ "\tShortwinners: " + (numberShort / numberShortDays * 100)+"%" + "," + "\tAvrgProfitShort: "
-		+df.format(AverageProfitShort) + "," + "\tAvrgHoldingPeriod: "+ (numberDays / numberOfTrades*365);
+		+df.format(AverageProfitShort) + "," + "\tAvrgHoldingPeriod: "+ (numberDays / numberOfTrades);
 
 		return s;
 	}

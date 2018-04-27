@@ -28,8 +28,10 @@ double currentLow = mData.elementAt(index).Low();
 
 for (int j = 60; j > 0 ;j--) {
 	boolean pH = (currentHigh >= mData.elementAt(index - j).High());
-//	boolean pL = (currentLow <= mData.elementAt(index - j).Low());
+	boolean pL = (currentLow <= mData.elementAt(index - j).Low());
 	if(!pH ) {
+		return false;
+	}else if(!pL) {
 		return false;
 	}
 }
@@ -77,20 +79,26 @@ boolean isShort = trade.getDir() == Direction.SHORT;
 		} else {
 			
 // TODO: Make conditions for SHORT trade
-//if currentBar low is higher than next day low, skip that day 
-			if(isShort) {
-				//reached our short loss,this might wrong
-				if(currentBar.Low() >= exitPrice) {
+//if currentBar low is less than next day low, put stoploss or if currentBar low is greater than next day low,
+//we cancel order
+			//this is probably wrong
+		/*	if(isShort) {
+				//reach Short loss
+				if(currentBar.Low() <= 100 * (1-0.01)) {
+					trade.close(currentBar.getDate(), currentBar.Low());
+					return trade;
+				}else if(currentBar.Low() >= 100 * (1-0.01)) {
+					trade.close(currentBar.getDate(), currentBar.Low());
 					return trade;
 				}
-			}
+			} */
 		} 
 		
 		if (i == size - 1) {
 			trade.close(currentBar.getDate(), currentBar.Close());
 			return trade;
-		}
-	}
+		} 
+	} 
 	return null;
 }
 
@@ -108,10 +116,11 @@ for (int i = 60; i < size; i++) {
 // meaning that we are going to set money aside
 // until we find a trade that goes one cent beyond
 // i's (day 60's) high.
-// Extra note: we ignore the first two days after
+// Extra note: we ignore the first two days, this means minimum is 2 days 
+//and max is up to 5 days. if no new high or new low found, check next 3 days.
 for ( int j = i + 2; j < size; j++) {
-	// TODO: Consider SHORT pattern
-	if (mData.elementAt(j).High() > sixtyDayBar.High() + 0.01) {
+	
+	if (mData.elementAt(j+2).High() > sixtyDayBar.High() + 0.01) {
 		Trade trade = new Trade();
 		trade.setDir(Direction.LONG);
 
@@ -124,14 +133,14 @@ for ( int j = i + 2; j < size; j++) {
 // sixtyDayBar's high
 //	mTrade.setEntryDate(mData.elementAt(j).getDate());
 				
-// Case 2: we count starting from day 2
-//trade.setEntryDate(mData.elementAt(i + 2).getDate());
+// Case 2: we count starting from day 3
+//trade.setEntryDate(mData.elementAt(i + 3).getDate());
 //trade.setEntryPrice(sixtyDayBar.High() + 0.01);
 //trade.setStopLoss(mLoss);
 //trade.setTarget(mTarget);
 //trade.setSymbol(mSymbol);
-trade.open(mSymbol, mData.elementAt(i+2).getDate(), sixtyDayBar.High()+0.01, mLoss, mTarget, Direction.LONG);
-trade = findClose(trade, j);
+//trade.open(mSymbol, mData.elementAt(i+2).getDate(), sixtyDayBar.High()+0.01, mLoss, mTarget, Direction.LONG);
+//trade = findClose(trade, j);
 
 if (trade != null) {
 	mTrades.insert(trade);

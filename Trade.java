@@ -1,13 +1,13 @@
 import java.util.*;
 
-//Holding period is an investment is used 
+
 public class Trade {
 	private Direction dir;
 	private String symbol;
 	private Date entryDate;
 	private Date exitDate;
-	private double entryPrice;
-	private double exitPrice;
+	private double entryPrice;//buy
+	private double exitPrice;//sell
 	private double target;
 	private double stopLoss;
 	private boolean on;
@@ -180,5 +180,9 @@ public class Trade {
 		exitDate = clDate;
 		exitPrice = exitP;
 		on = false;
+//We calculate holding period by finding the difference between the day
+//we invested(entryPrice) and the day we exited(exitPrice)
+//Need to ask Professor about this b/c showing deprecation error; need to use Calendar function.
+//		holdingPeriod = entryDate.getDate() - exitDate.getDate();
 	}
 }
