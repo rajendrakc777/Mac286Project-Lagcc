@@ -44,8 +44,8 @@ double AverageProfitShort =(totalShortWinnings - totalShortLoss / numberShortDay
 
 String s = "\tNumOfTrades:"+numberOfTrades + "," + "\tWinners:" + (numberWinners / numberOfTrades * 100)+"%" + ","
 		+ "\tAvrgProfit: " +df.format(Averageprofit)+ ","+ "\tLongwinners: " + (numberLong / numberLongDays * 100)+"%" + 
-		" ," + "\tAvrgProfitWinner: "+ df.format(AverageProfitWinners) + ", "+/*"\tNumOfShort:" + numberShort + ","
-		+*/ "\tShortwinners: " + (numberShort / numberShortDays * 100)+"%" + "," + "\tAvrgProfitShort: "
+		" ," + "\tAvrgProfitWinner: "+ df.format(AverageProfitWinners) + ", "+"\tNumOfShort:" + numberShort + ","
+		+"\tShortwinners: " + (numberShort / numberShortDays * 100)+"%" + "," + "\tAvrgProfitShort: "
 		+df.format(AverageProfitShort) + "," + "\tAvrgHoldingPeriod: "+ (numberDays / numberOfTrades);
 
 		return s;

@@ -180,9 +180,10 @@ public class Trade {
 		exitDate = clDate;
 		exitPrice = exitP;
 		on = false;
+	
 //We calculate holding period by finding the difference between the day
 //we invested(entryPrice) and the day we exited(exitPrice)
 //Need to ask Professor about this b/c showing deprecation error; need to use Calendar function.
-//		holdingPeriod = entryDate.getDate() - exitDate.getDate();
+	//	holdingPeriod = entryDate.getDate() - exitDate.getDate();
 	}
 }
