@@ -52,7 +52,7 @@ public class Trade {
 		exitDate = T.exitDate;
 		holdingPeriod = T.holdingPeriod;
 	}
-
+//??
 	public boolean isOn() {
 		return on;
 	}

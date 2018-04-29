@@ -9,45 +9,56 @@ private tradeArray mTrades;
 private barArray mData;
 
 public symbolTester(String symbol, String path, double loss, double target) {
-mPath = path; 
-mSymbol = symbol;
-mLoss = loss; 
-mTarget = target;
-mTrades = new tradeArray(200, 100);
-mData = new barArray(4000);
+	mPath = path; 
+	mSymbol = symbol;
+	//mLoss - set price, sell a stock when it reaches a certain price before the loss is too big (WHATS OUR STOPLOSS?)
+	mLoss = loss; 
+	//target price - if achieved outcomes for the best possible outcome for an investement
+	mTarget = target;
+	//create sa vector of trades size 200 inc 100
+	mTrades = new tradeArray(200, 100);
+	//loads data that will be read line by line
+	mData = new barArray(4000);
 }
 
 public tradeArray getTrades() {
 	return mTrades;
 }
-//This method will scan the previous 60th days of High's and Low's
-//This is what "60 day high" means in pattern pic
+
+/*Method that determines if there is a pattern
+Since our pattern requires the 60th day's hihg to be the highest so far,
+we use index=60 and check all the smaller indices.
+If the 60th day is indeed the highest - pattern is true. Otherwise - false.
+*/
+
 private boolean pattern(int index) {
-double currentHigh = mData.elementAt(index).High();//current index
-double currentLow = mData.elementAt(index).Low();
+	double currentHigh = mData.elementAt(index).High();//current index
+	
+	//????? What do we need current low for????? 
+	double currentLow = mData.elementAt(index).Low();
 
-for (int j = 60; j > 0 ;j--) {
-	boolean pH = (currentHigh >= mData.elementAt(index - j).High());
-//	boolean pL = (currentLow <= mData.elementAt(index - j).Low());
-	if(!pH ) {
-		return false;
+	for (int j = 60; j > 0 ;j--) {
+		boolean pH = (currentHigh >= mData.elementAt(index - j).High());
+	//	boolean pL = (currentLow <= mData.elementAt(index - j).Low());
+		if(!pH ) {
+			return false;
+		}
 	}
-}
 
-// By using Math.min(index + 2, mData.size()) we make sure
-// we never go beyond the amount of data we have
-// Ex: If mData has 100 elements, and index = 99,
-// Attempting to access element 100 and 101 will crash the program
-// Math.min(99 + 1, 100) will return 100, making sure that
-// i, which now equals (99 + 1), fails the comparison
-// 100 < 100 (false)
-// so the code doesn't execute
-for(int i = index+1; i<Math.min(index + 2, mData.size()); i++) {
-	if(currentHigh<=mData.elementAt(i).High() || currentLow >=mData.elementAt(i).Low()) {
-		return false;
+	// By using Math.min(index + 2, mData.size()) we make sure
+	// we never go beyond the amount of data we have
+	// Ex: If mData has 100 elements, and index = 99,
+	// Attempting to access element 100 and 101 will crash the program
+	// Math.min(99 + 1, 100) will return 100, making sure that
+	// i, which now equals (99 + 1), fails the comparison
+	// 100 < 100 (false)
+	// so the code doesn't execute
+	for(int i = index+1; i<Math.min(index + 2, mData.size()); i++) {
+		if(currentHigh<=mData.elementAt(i).High() || currentLow >=mData.elementAt(i).Low()) {
+			return false;
+		}
 	}
-}
-  return true; 
+	  return true; 
 }
 
 // trade is the open trade, and index is that start index form mData
@@ -121,6 +132,7 @@ for ( int j = i + 2; j < size; j++) {
 //trade.setStopLoss(mLoss);
 //trade.setTarget(mTarget);
 //trade.setSymbol(mSymbol);
+
 trade.open(mSymbol, mData.elementAt(i+2).getDate(), sixtyDayBar.High()+0.01, mLoss, mTarget, Direction.LONG);
 trade = findClose(trade, j);
 
