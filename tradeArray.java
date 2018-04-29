@@ -23,12 +23,12 @@ public class tradeArray {
 		return v.size();
 	}
 
-	//inset method to call the add method in the Vector 
+	//inset method to call the add method in the Vector (adding to the end)
 	public void insert(Trade T) {
 		v.add(T);
 	}
 
-	//public Trade At(int index) retuning the trade at index index.
+	//public Trade At(int index) returning the trade at index index.
 	public Trade At(int index) {
 		return v.elementAt(index);
 	}
@@ -58,7 +58,9 @@ public class tradeArray {
 		//go throu the array (vector) trade per trade and update the info in Stats
 		for (int i = 0; i < this.size(); i++) {
 			st.numberOfTrades++;
-			st.numberDays += this.At(i).getHoldingPeriod();
+			st.numberDays += this.At(i).getHoldingPeriod();		
+			//if long trade proft/loss = exitPrice - entryPrice positive is a win
+			//if short trade, profit/loss = entryPrice - exitPrice negative is a loss
 			if (this.At(i).percentPL() >= 0) {
 				st.totalWinnings += this.At(i).percentPL();
 				st.numberWinners += 1;

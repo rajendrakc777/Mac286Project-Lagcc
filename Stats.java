@@ -17,6 +17,7 @@ totalShortLoss = 0.0;
 }
 
 public String toString() {
+
 //Fixing division by 0
 //Assuming that if numberOfTrades (denominator) is 0, then numberOfWinners should also be 0,
 // Therefore, initializing numberOfTrades and any other denominator to 1 to avoid division
@@ -27,8 +28,13 @@ if (numberLongDays == 0)
 	numberLongDays = 1;
 if (numberShortDays == 0)
 	numberShortDays = 1;
+ master
+if (numberOfTrades == 0)
+	numberOfTrades = 1; 
+
 //if (numberOfTrades == 0)
 	//numberOfTrades = 1; 
+  master
 //Decimal format, formats(does not round) floating point values
 //into specified # of decimal spaces, req lib java.text.DecimalFormat
 DecimalFormat df = new DecimalFormat("#.00");
