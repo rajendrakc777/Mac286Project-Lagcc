@@ -1,4 +1,5 @@
 import java.util.*;
+import java.text.DecimalFormat;
 
 
 public class Trade {
@@ -7,183 +8,183 @@ public class Trade {
 	private Date entryDate;
 	private Date exitDate;
 	private double entryPrice;//buy
-	private double exitPrice;//sell
-	private double target;
-	private double stopLoss;
-	private boolean on;
-	private int holdingPeriod;
+private double exitPrice;//sell
+private double target;
+private double stopLoss;
+private boolean on;
+private int holdingPeriod;
 
-	public Trade() {
-		dir = Direction.NONE;
-		symbol = "";
-		entryDate = null;
-		exitDate = null;
-		entryPrice = 0.0;
-		exitPrice = 0.0;
-		target = 0.0;
-		stopLoss = 0.0;
-		on = false;
-		holdingPeriod = 0;
+public Trade() {
+	dir = Direction.NONE;
+	symbol = "";
+	entryDate = null;
+	exitDate = null;
+	entryPrice = 0.0;
+	exitPrice = 0.0;
+	target = 0.0;
+	stopLoss = 0.0;
+	on = false;
+	holdingPeriod = 0;
+}
+
+public Trade(String sym, Date opDate, double entry, double stop, double tar, Direction d, int holdingPeriod) {
+	symbol = sym;
+	entryDate = opDate;
+	entryPrice = entry;
+	stopLoss = stop;
+	target = tar;
+	dir = d;
+	on = true;
+	exitPrice = 0.0;
+	exitDate = null;
+	holdingPeriod = 0;
+}
+
+//copy constructor 
+public Trade(Trade T) {
+	symbol = T.symbol;
+	entryDate = T.entryDate;
+	entryPrice = T.entryPrice;
+	stopLoss = T.stopLoss;
+	target = T.target;
+	dir = T.dir;
+	on = T.on;
+	exitPrice = T.exitPrice;
+	exitDate = T.exitDate;
+	holdingPeriod = T.holdingPeriod;
+}
+
+public boolean isOn() {
+	return on;
+}
+
+public Direction getDir() {
+	return dir;
+}
+
+public void setDir(Direction dir) {
+	this.dir = dir;
+}
+
+public String getSymbol() {
+	return symbol;
+}
+
+public void setSymbol(String symbol) {
+	this.symbol = symbol;
+}
+
+public Date getEntryDate() {
+	return entryDate;
+}
+
+public void setEntryDate(Date entryDate) {
+	this.entryDate = entryDate;
+}
+
+public Date getExitDate() {
+	return exitDate;
+}
+
+public void setExitDate(Date exitDate) {
+	this.exitDate = exitDate;
+}
+
+public double getEntryPrice() {
+	return entryPrice;
+}
+
+public void setEntryPrice(double entryPrice) {
+	this.entryPrice = entryPrice;
+}
+
+public double getExitPrice() {
+	return exitPrice;
+}
+
+public void setExitPrice(double exitPrice) {
+	this.exitPrice = exitPrice;
+}
+
+public double getTarget() {
+	return target;
+}
+
+public void setTarget(double target) {
+	this.target = target;
+}
+
+public double getStopLoss() {
+	return stopLoss;
+}
+
+public void setStopLoss(double stopLoss) {
+	this.stopLoss = stopLoss;
+}
+
+public int getHoldingPeriod() {
+	return holdingPeriod;
+}
+public void setHoldingPeriod(int holdingPeriod) {
+	this.holdingPeriod = holdingPeriod;
+}
+
+//double PL() returns the profit/loss in dollars
+public double PL() {
+	//if long trade proft/loss = exitPrice - entryPrice positive is a win
+//if short trade, profit/loss = entryPrice - exitPrice positive a win
+if (dir == Direction.LONG) {
+	return (exitPrice - entryPrice);
+} else if (dir == Direction.SHORT) {
+	return (entryPrice - exitPrice);
+} else {
+	System.out.println("We got a problem!!!");
+		return 0;
 	}
+}
 
-	public Trade(String sym, Date opDate, double entry, double stop, double tar, Direction d, int holdingPeriod) {
-		symbol = sym;
-		entryDate = opDate;
-		entryPrice = entry;
-		stopLoss = stop;
-		target = tar;
-		dir = d;
-		on = true;
-		exitPrice = 0.0;
-		exitDate = null;
-		holdingPeriod = 0;
+//double percentPL() returns the Profit/loss in percentage
+//THIS IS THE MOST IMPORTANT 
+public double percentPL() {
+	//if long trade proft/loss = exitPrice - entryPrice positive is a win
+//if short trade, profit/loss = entryPrice - exitPrice positive a win
+if (dir == Direction.LONG) {
+	return (exitPrice - entryPrice) / entryPrice * 100;
+} else if (dir == Direction.SHORT) {
+	return (entryPrice - exitPrice) / entryPrice * 100;
+} else {
+	System.out.println("We got a problem!!!");
+		return 0;
 	}
+}
 
-	//copy constructor 
-	public Trade(Trade T) {
-		symbol = T.symbol;
-		entryDate = T.entryDate;
-		entryPrice = T.entryPrice;
-		stopLoss = T.stopLoss;
-		target = T.target;
-		dir = T.dir;
-		on = T.on;
-		exitPrice = T.exitPrice;
-		exitDate = T.exitDate;
-		holdingPeriod = T.holdingPeriod;
-	}
 
-	public boolean isOn() {
-		return on;
-	}
+DecimalFormat df = new DecimalFormat("#.00");
+public String toString() {
+String st = "EntryDate:" + entryDate.toString() + ", " + "\tEntryPrice:"+ df.format(entryPrice) + "\tStopLoss:" + df.format(stopLoss) + 
+"\tTarget:" + df.format(target)+"\tExitDate:"+ exitDate.toString() + "\tExitPrice:" + df.format(exitPrice) + "\tPercentPL:" + df.format(this.percentPL());
+	return st;
+}
 
-	public Direction getDir() {
-		return dir;
-	}
+public void open(String sym, Date opDate, double entry, double stop, double tar, Direction d) {
+	symbol = sym;
+	entryDate = opDate;
+	entryPrice = entry;
+	stopLoss = stop;
+	target = tar;
+	dir = d;
+	on = true;
+}
 
-	public void setDir(Direction dir) {
-		this.dir = dir;
-	}
+public void close(Date clDate, double exitP) {
+	if (on == false) {
+		System.out.println("Error, trying to close a closed trade");
+	System.exit(1);
+}
+exitDate = clDate;
+exitPrice = exitP;
+on = false;
 
-	public String getSymbol() {
-		return symbol;
-	}
 
-	public void setSymbol(String symbol) {
-		this.symbol = symbol;
-	}
-
-	public Date getEntryDate() {
-		return entryDate;
-	}
-
-	public void setEntryDate(Date entryDate) {
-		this.entryDate = entryDate;
-	}
-
-	public Date getExitDate() {
-		return exitDate;
-	}
-
-	public void setExitDate(Date exitDate) {
-		this.exitDate = exitDate;
-	}
-
-	public double getEntryPrice() {
-		return entryPrice;
-	}
-
-	public void setEntryPrice(double entryPrice) {
-		this.entryPrice = entryPrice;
-	}
-
-	public double getExitPrice() {
-		return exitPrice;
-	}
-
-	public void setExitPrice(double exitPrice) {
-		this.exitPrice = exitPrice;
-	}
-
-	public double getTarget() {
-		return target;
-	}
-
-	public void setTarget(double target) {
-		this.target = target;
-	}
-
-	public double getStopLoss() {
-		return stopLoss;
-	}
-
-	public void setStopLoss(double stopLoss) {
-		this.stopLoss = stopLoss;
-	}
-
-	public int getHoldingPeriod() {
-		return holdingPeriod;
-	}
-
-	//double PL() returns the profit/loss in dollars
-	public double PL() {
-		//if long trade proft/loss = exitPrice - entryPrice positive is a win
-		//if short trade, profit/loss = entryPrice - exitPrice positive a win
-		if (dir == Direction.LONG) {
-			return (exitPrice - entryPrice);
-		} else if (dir == Direction.SHORT) {
-			return (entryPrice - exitPrice);
-		} else {
-			System.out.println("We got a problem!!!");
-			return 0;
-		}
-	}
-
-	//double percentPL() returns the Profit/loss in percentage
-	//THIS IS THE MOST IMPORTANT 
-	public double percentPL() {
-		//if long trade proft/loss = exitPrice - entryPrice positive is a win
-		//if short trade, profit/loss = entryPrice - exitPrice positive a win
-		if (dir == Direction.LONG) {
-			return (exitPrice - entryPrice) / entryPrice * 100;
-		} else if (dir == Direction.SHORT) {
-			return (entryPrice - exitPrice) / entryPrice * 100;
-		} else {
-			System.out.println("We got a problem!!!");
-			return 0;
-		}
-	}
-
-	//String toString() returns the trades as follows 
-	//entrydate, entry price, stoploss, target, direction, exitdate, exitprice, percentPL
-	public String toString() {
-		String st = entryDate.toString() + ", " + entryPrice + ", " + stopLoss + ", " + target + ", " + dir + ", "
-				+ exitDate.toString() + ", " + exitPrice + ", " + this.percentPL();
-		return st;
-	}
-
-	public void open(String sym, Date opDate, double entry, double stop, double tar, Direction d) {
-		symbol = sym;
-		entryDate = opDate;
-		entryPrice = entry;
-		stopLoss = stop;
-		target = tar;
-		dir = d;
-		on = true;
-	}
-
-	public void close(Date clDate, double exitP) {
-		if (on == false) {
-			System.out.println("Error, trying to close a closed trade");
-			System.exit(1);
-		}
-		exitDate = clDate;
-		exitPrice = exitP;
-		on = false;
-	
-//We calculate holding period by finding the difference between the day
-//we invested(entryPrice) and the day we exited(exitPrice)
-//Need to ask Professor about this b/c showing deprecation error; need to use Calendar function.
-	//	holdingPeriod = entryDate.getDate() - exitDate.getDate();
 	}
 }

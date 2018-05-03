@@ -55,6 +55,7 @@ public class tradeArray {
 	public Stats getStats() {
 		//create a Stats objects 
 		Stats st = new Stats();
+		
 		//go throu the array (vector) trade per trade and update the info in Stats
 		for (int i = 0; i < this.size(); i++) {
 			st.numberOfTrades++;
@@ -68,6 +69,9 @@ public class tradeArray {
 					st.totalLongWinnings += this.At(i).percentPL();
 					st.numberLongDays += this.At(i).getHoldingPeriod();
 					st.totalWinnings += this.At(i).PL();
+
+					
+					
 
 				} else {
 					st.numberShort++;

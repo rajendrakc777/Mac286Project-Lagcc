@@ -33,6 +33,7 @@ if (numberShortDays == 0)
 //into specified # of decimal spaces, req lib java.text.DecimalFormat
 DecimalFormat df = new DecimalFormat("#.00");
 
+
 //TODO: need to fix percentWinners in general and print PercentLosers and holding period
 //Note: To calculate average Holding period, divide inventory by cost of sales
 //and multiply the answer by 365 for the holding period in days or by 12 for the
@@ -42,12 +43,13 @@ double AverageProfitWinners =(totalLongWinnings - totalLongLoss / numberLongDays
 double AverageProfitShort =(totalShortWinnings - totalShortLoss / numberShortDays);
 
 
+
 String s = "\tNumOfTrades:"+numberOfTrades + "," + "\tWinners:" + (numberWinners / numberOfTrades * 100)+"%" + ","
 		+ "\tAvrgProfit: " +df.format(Averageprofit)+ ","+ "\tLongwinners: " + (numberLong / numberLongDays * 100)+"%" + 
 		" ," + "\tAvrgProfitWinner: "+ df.format(AverageProfitWinners) + ", "+"\tNumOfShort:" + numberShort + ","
 		+"\tShortwinners: " + (numberShort / numberShortDays * 100)+"%" + "," + "\tAvrgProfitShort: "
 		+df.format(AverageProfitShort) + "," + "\tAvrgHoldingPeriod: "+ (numberDays / numberOfTrades);
 
-		return s;
+		return s; 
 	}
 }
