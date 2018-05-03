@@ -38,6 +38,7 @@ public tradeArray getTrades() {
 
 			if (!pat) {
 				return false;
+ master
 			}
 		}
 
