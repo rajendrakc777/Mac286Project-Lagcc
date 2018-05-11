@@ -3,11 +3,11 @@ import java.text.DecimalFormat;
 
 
 public class Trade {
-	private Direction dir;
-	private String symbol;
-	private Date entryDate;
-	private Date exitDate;
-	private double entryPrice;//buy
+private Direction dir;
+private String symbol;
+private Date entryDate;
+private Date exitDate;
+private double entryPrice;//buy
 private double exitPrice;//sell
 private double target;
 private double stopLoss;
@@ -158,12 +158,13 @@ if (dir == Direction.LONG) {
 	}
 }
 
-
 DecimalFormat df = new DecimalFormat("#.00");
 public String toString() {
-String st = "EntryDate:" + entryDate.toString() + ", " + "\tEntryPrice:"+ df.format(entryPrice) + "\tStopLoss:" + df.format(stopLoss) + 
-"\tTarget:" + df.format(target)+"\tExitDate:"+ exitDate.toString() + "\tExitPrice:" + df.format(exitPrice) + "\tPercentPL:" + df.format(this.percentPL());
-	return st;
+
+String st = "EntryDate:" + String.format ("%tD",entryDate) +"\tEntryPrice:"+ df.format(entryPrice) + "\tStopLoss:" + df.format(stopLoss) + 
+"\tTarget:"+df.format(target)+"\tExitDate:"+String.format("%tD",exitDate) + "\tExitPrice:" + df.format(exitPrice) + 
+"\t\tPercentPL:" + df.format(this.percentPL()) + "\t\t\tHoldingPeriod:" + holdingPeriod+ "Days";
+return st;
 }
 
 public void open(String sym, Date opDate, double entry, double stop, double tar, Direction d) {

@@ -7,6 +7,7 @@ public int numberDays, numberLongDays, numberShortDays;
 double totalWinnings, totalLoss, totalLongWinnings, totalLongLoss, totalShortWinnings;
 double totalShortLoss;
 
+
 public Stats() {
 numberOfTrades = numberLong = numberShort = numberWinners = numberLosers = 0;
 longWinners = longLosers = shortWinners = shortLosers = 0;
@@ -28,33 +29,35 @@ if (numberLongDays == 0)
 	numberLongDays = 1;
 if (numberShortDays == 0)
 	numberShortDays = 1;
- master
+ 
 if (numberOfTrades == 0)
 	numberOfTrades = 1; 
 
 //if (numberOfTrades == 0)
 	//numberOfTrades = 1; 
-  master
+  
 //Decimal format, formats(does not round) floating point values
 //into specified # of decimal spaces, req lib java.text.DecimalFormat
 DecimalFormat df = new DecimalFormat("#.00");
 
 
-//TODO: need to fix percentWinners in general and print PercentLosers and holding period
-//Note: To calculate average Holding period, divide inventory by cost of sales
-//and multiply the answer by 365 for the holding period in days or by 12 for the
-//holding period in months
-double Averageprofit = (totalWinnings - totalLoss) / (numberOfTrades + numberLong);
-double AverageProfitWinners =(totalLongWinnings - totalLongLoss / numberLongDays);
+
+double AveragePLpercent = ((totalWinnings + totalLoss) / numberOfTrades);
 double AverageProfitShort =(totalShortWinnings - totalShortLoss / numberShortDays);
+double AverageProfitLong = ((totalLongWinnings + totalLongLoss)/numberLong);
+double AverageHoldingPeriod = (numberDays/numberOfTrades);
+double PercentWinners = (double)numberWinners/numberOfTrades*100.0;
+double PercentLongwinners = (double)longWinners/numberLong * 100.0;
+double PercentShortwin = (double)shortWinners/numberShort*100.0;
+//
+//add averagePL%m averagePLLong, averagePLShort
 
 
 
-String s = "\tNumOfTrades:"+numberOfTrades + "," + "\tWinners:" + (numberWinners / numberOfTrades * 100)+"%" + ","
-		+ "\tAvrgProfit: " +df.format(Averageprofit)+ ","+ "\tLongwinners: " + (numberLong / numberLongDays * 100)+"%" + 
-		" ," + "\tAvrgProfitWinner: "+ df.format(AverageProfitWinners) + ", "+"\tNumOfShort:" + numberShort + ","
-		+"\tShortwinners: " + (numberShort / numberShortDays * 100)+"%" + "," + "\tAvrgProfitShort: "
-		+df.format(AverageProfitShort) + "," + "\tAvrgHoldingPeriod: "+ (numberDays / numberOfTrades);
+String s ="\t\tNumOfTrades:"+numberOfTrades + "\t\tWinners:" + df.format(PercentWinners)+"%" /*numberLong*/
+		+ "\t\tAvrgProfit: " +df.format(AveragePLpercent) + "\t\tLongwinners: " +df.format(PercentLongwinners)+"%" + 
+		"\tNumOfShort:" + numberShort + "\tShortwinners: " + PercentShortwin+"%" + "\tAvrgProfitShort:"+df.format(AverageProfitShort) + 
+		"\tAvrgProfitLong:"+df.format(AverageProfitLong) +"\t\t\tAvrgHoldingPeriod: "+ AverageHoldingPeriod;
 
 		return s; 
 	}
