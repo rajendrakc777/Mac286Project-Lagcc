@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Vector;
 
 public class tradeArray {
 	//A vector of trades Vector<Trade> 
@@ -35,8 +35,7 @@ public class tradeArray {
 
 	public void addArray(tradeArray input) {
 		for (int i = 0; i < input.size(); i++) {
-			Trade T = new Trade(input.At(i));
-			this.insert(T);
+			this.insert(input.At(i));
 		}
 	}
 

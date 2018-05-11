@@ -1,5 +1,5 @@
-import java.util.*;
-import java.text.DecimalFormat;
+import java.util.Date;
+//import java.text.DecimalFormat;
 
 
 public class Trade {
@@ -158,12 +158,12 @@ if (dir == Direction.LONG) {
 	}
 }
 
-DecimalFormat df = new DecimalFormat("#.00");
+//DecimalFormat df = new DecimalFormat("#.00");
 public String toString() {
 
-String st = "EntryDate:" + String.format ("%tD",entryDate) +"\tEntryPrice:"+ df.format(entryPrice) + "\tStopLoss:" + df.format(stopLoss) + 
-"\tTarget:"+df.format(target)+"\tExitDate:"+String.format("%tD",exitDate) + "\tExitPrice:" + df.format(exitPrice) + 
-"\t\tPercentPL:" + df.format(this.percentPL()) + "\t\t\tHoldingPeriod:" + holdingPeriod+ "Days";
+String st = "EntryDate:" + entryDate +"\tEntryPrice:"+ entryPrice + "\tStopLoss:" + stopLoss + 
+"\tTarget:"+target+"\tExitDate:"+exitDate + "\tExitPrice:" + exitPrice + 
+"\t\tPercentPL:" + this.percentPL() + "\t\t\tHoldingPeriod:" + holdingPeriod+ "Days";
 return st;
 }
 
