@@ -24,7 +24,7 @@ sim.run();
 tradeArray Tr = sim.getTrades();
 
 //print the stats; put the company symbol too
-System.out.println("Loss:"+loss[i] + ", " +"Target:"+target[j] +","+ Tr.getStats().toString());
+System.out.println("|STOCKS|" + "Loss:"+loss[i] + ", " +"Target:"+target[j] +","+ Tr.getStats().toString());
 
 //display trades data
 //System.out.println(Tr.toString());
@@ -34,7 +34,7 @@ simETF.run();
 
 Tr = simETF.getTrades();
 //prints stats for ETF
-System.out.println("Loss:"+loss[i] + ", " + "Target:"+target[j] + "," + Tr.getStats().toString());
+System.out.println("| ETF |" +"Loss:"+loss[i] + ", " + "Target:"+target[j] + "," + Tr.getStats().toString());
 				
 	}
 }
