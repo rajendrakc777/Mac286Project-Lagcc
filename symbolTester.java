@@ -1,4 +1,4 @@
-import java.io.BufferedReader;
+import java.io.BufferedReader; 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -70,8 +70,7 @@ for (int j = i + 3; j <= i + 6; j++) {
 		findCloseLong(trade, j);
 		mTrades.insert(trade);
 		break;
-	} else if (mData.elementAt(j).Low() >= sixtyDayBar.Low()
-			&& mData.elementAt(j).High() <= sixtyDayBar.High()) {
+	} else if (mData.elementAt(j).Low() >= sixtyDayBar.Low() && mData.elementAt(j).High() <= sixtyDayBar.High()) {
 		continue;
 	} else {
 		break;
@@ -86,7 +85,7 @@ for (int j = i + 3; j <= i + 6; j++) {
 
 	}
 
-//Method to find the closing price/loss
+
 private void findCloseLong(Trade trade, int index) {
 		int size = mData.size();
 		int hold = 0;
@@ -150,10 +149,11 @@ if (!myfile.exists()) {
 	return false;
 }
 try {
-	FileReader fr = new FileReader(fileName);
-	// open the file FileReader->BufferedReader
+	
+FileReader fr = new FileReader(fileName);
+// open the file FileReader->BufferedReader
 BufferedReader br = new BufferedReader(fr);
-String line = br.readLine();// discard this line
+String line = br.readLine();
 			while ((line = br.readLine()) != null) {
 				Bar b = new Bar(line);
 				mData.insert(b);

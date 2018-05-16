@@ -29,18 +29,10 @@ if (numberLongDays == 0)
 	numberLongDays = 1;
 if (numberShortDays == 0)
 	numberShortDays = 1;
- 
-if (numberOfTrades == 0)
+ if (numberOfTrades == 0)
 	numberOfTrades = 1; 
 
-//if (numberOfTrades == 0)
-	//numberOfTrades = 1; 
-  
-//Decimal format, formats(does not round) floating point values
-//into specified # of decimal spaces, req lib java.text.DecimalFormat
-DecimalFormat df = new DecimalFormat("#.00");
-
-
+DecimalFormat df = new DecimalFormat("#0.00");
 
 double AveragePLpercent = ((totalWinnings + totalLoss) / numberOfTrades);
 double AverageProfitShort =(totalShortWinnings - totalShortLoss / numberShortDays);
@@ -49,15 +41,15 @@ double AverageHoldingPeriod = (numberDays/numberOfTrades);
 double PercentWinners = (double)numberWinners/numberOfTrades*100.0;
 double PercentLongwinners = (double)longWinners/numberLong * 100.0;
 double PercentShortwin = (double)shortWinners/numberShort*100.0;
-//
+
 //add averagePL%m averagePLLong, averagePLShort
 
 
 
-String s ="\t\tNumOfTrades:"+numberOfTrades + "\t\tWinners:" + df.format(PercentWinners)+"%" /*numberLong*/
-		+ "\t\tAvrgProfit: " +df.format(AveragePLpercent) + "\t\tLongwinners: " +df.format(PercentLongwinners)+"%" + 
+String s ="NumOfTrades:"+numberOfTrades + "\tWinners:" + df.format(PercentWinners)+"%" /*numberLong*/
+		+ "\tAvrgPLpercent: " +df.format(AveragePLpercent)+"%"+ "\tLongwinners: " +df.format(PercentLongwinners)+"%" + 
 		"\tNumOfShort:" + numberShort + "\tShortwinners: " + PercentShortwin+"%" + "\tAvrgProfitShort:"+df.format(AverageProfitShort) + 
-		"\tAvrgProfitLong:"+df.format(AverageProfitLong) +"\t\t\tAvrgHoldingPeriod: "+ AverageHoldingPeriod;
+		"\tAvrgProfitLong:"+df.format(AverageProfitLong) +"\tAvrgHoldingPeriod:"+ AverageHoldingPeriod + "days";
 
 		return s; 
 	}
