@@ -8,7 +8,7 @@ public class EnDecriptor {
 //create chain for complexity
 private static final int[] chain ={
 //generate random #s and each char will be associated with these random #s
-2012, 2314
+142, 52
 	
 };
 	

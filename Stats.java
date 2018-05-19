@@ -37,19 +37,18 @@ DecimalFormat df = new DecimalFormat("#0.00");
 double AveragePLpercent = ((totalWinnings + totalLoss) / numberOfTrades);
 double AverageProfitShort =(totalShortWinnings - totalShortLoss / numberShortDays);
 double AverageProfitLong = ((totalLongWinnings + totalLongLoss)/numberLong);
-double AverageHoldingPeriod = (numberDays/numberOfTrades);
+int    AverageHoldingPeriod = (numberDays/numberOfTrades);
 double PercentWinners = (double)numberWinners/numberOfTrades*100.0;
 double PercentLongwinners = (double)longWinners/numberLong * 100.0;
 double PercentShortwin = (double)shortWinners/numberShort*100.0;
 
-//add averagePL%m averagePLLong, averagePLShort
 
 
 
-String s ="NumOfTrades:"+numberOfTrades + "\tWinners:" + df.format(PercentWinners)+"%" /*numberLong*/
-		+ "\tAvrgPLpercent: " +df.format(AveragePLpercent)+"%"+ "\tLongwinners: " +df.format(PercentLongwinners)+"%" + 
-		"\tNumOfShort:" + numberShort + "\tShortwinners: " + df.format(PercentShortwin)+"%" + "\tAvrgProfitShort:"+df.format(AverageProfitShort) + 
-		"\tAvrgProfitLong:"+df.format(AverageProfitLong) +"\tAvrgHoldingPeriod:"+ AverageHoldingPeriod + "days";
+
+String s ="NumOfTrades: "+numberOfTrades + "\tWinners: " + df.format(PercentWinners)+"%"+"\tNumLong:"+ numberLong + "\tAvrgPLpercent: " +df.format(AveragePLpercent)+"%"+ 
+		"\tLongwinners: " +df.format(PercentLongwinners)+"%"+"\tNumShort:" + numberShort + "\tShortwinners: " + df.format(PercentShortwin)+"%"+ 
+		"\tAvrgProfitShort:"+df.format(AverageProfitShort) +"\tAvrgProfitLong:"+df.format(AverageProfitLong) +"\tHoldingPeriod:"+AverageHoldingPeriod + "days";
 
 		return s; 
 	}
@@ -68,12 +67,12 @@ public String toString2() {
 	 if (numberOfTrades == 0)
 		numberOfTrades = 1; 
 
-DecimalFormat df = new DecimalFormat("#0.00");
+DecimalFormat df2 = new DecimalFormat("#0.00");
 
 	double AveragePLpercent = ((totalWinnings + totalLoss) / numberOfTrades);
 	double AverageProfitShort =(totalShortWinnings - totalShortLoss / numberShortDays);
 	double AverageProfitLong = ((totalLongWinnings + totalLongLoss)/numberLong);
-	double AverageHoldingPeriod = (numberDays/numberOfTrades);
+	int AverageHoldingPeriod = (numberDays/numberOfTrades); //original was declared as double, but holding period is days
 	double PercentWinners = (double)numberWinners/numberOfTrades*100.0;
 	double PercentLongwinners = (double)longWinners/numberLong * 100.0;
 	double PercentShortwin = (double)shortWinners/numberShort*100.0;
@@ -81,12 +80,11 @@ DecimalFormat df = new DecimalFormat("#0.00");
 	
 
 
-String s =numberOfTrades + "," + df.format(PercentWinners)+"%" /*numberLong*/
-			+ "," +df.format(AveragePLpercent)+"%"+ "," +df.format(PercentLongwinners)+"%" + 
-			"," + numberShort + "\t" + PercentShortwin+"%" + ","+df.format(AverageProfitShort) + 
-			","+df.format(AverageProfitLong) +","+ AverageHoldingPeriod + "days";
+String s =numberOfTrades + "," + df2.format(PercentWinners)+"%"+ "," +numberLong+ "," +df2.format(AveragePLpercent)+"%"+ "," +df2.format(PercentLongwinners)+"%"
+		+","+numberShort+ ","+ PercentShortwin+"%"+ "," +df2.format(AverageProfitShort)+ ","+df2.format(AverageProfitLong) + ","+AverageHoldingPeriod;
 
 			return s; 
 		}
+	
 
 }

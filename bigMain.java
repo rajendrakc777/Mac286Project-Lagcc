@@ -56,7 +56,7 @@ try {
 }
 
 
-String Collist = "Loss," + " "+ "Target,"+"NumTrades,"+ "Win%,"+ "AvrgPL%," +"LongWin%,"+"NumShort,"+"Shortwin%,"+"AvrgProfitShort,"+"AvrgProfitLong,"+"HoldPeriod,";
+String Collist = "Loss," + " "+ "Target,"+"NumTrades,"+ "Win%,"+ "NumLong,"+ "AvrgPL%," +"LongWin%,"+"NumShort,"+"Shortwin%,"+"AvrgProfitShort,"+"AvrgProfitLong,"+"HoldingPeriod";
 builder.append(Collist + "\n");
 
 for(int k =0; k <  4; k++) {
@@ -64,15 +64,13 @@ for(int z=0;  z  <  4; z++) {
 
 Simulator sim = new Simulator(path, "Stocks.txt", loss[k], target[z]);
 sim.run();
-//Simulator simETF = new Simulator(path, "ETFs.txt", loss[k], target[z]);
-//simETF.run();
 
 
 tradeArray Tr = sim.getTrades();
 
 
 
-builder.append(loss[k] + ","+ target[z]+","+Tr.getStats().toString2());
+builder.append(loss[k] +","+ target[z]+","+ Tr.getStats().toString2());
 builder.append('\n');
 	}
 }
@@ -90,7 +88,7 @@ try {
 	e.printStackTrace();
 }
 
-String Collist2 = "Loss," + "Target,"+"NumTrades,"+ "Win%,"+ "AvrgPL%," +"LongWin%,"+"NumShort,"+"Shortwin%,"+"AvrgProfitShort,"+"AvrgProfitLong,"+"HoldPeriod,";
+String Collist2 = "Loss," + "Target,"+"NumTrades,"+ "Win%,"+ "NumLong,"+ "AvrgPL%," +"LongWin%,"+"NumShort,"+"Shortwin%,"+"AvrgProfitShort,"+"AvrgProfitLong,"+ "HoldingPeriod,";
 builder2.append(Collist2 + "\n");
 
 for(int k =0; k <  4; k++) {
@@ -103,7 +101,7 @@ simETF.run();
 tradeArray Tr1 = simETF.getTrades();
 
 
-builder2.append(loss[k] + ","+ target[z]+","+Tr1.getStats().toString2());
+builder2.append(loss[k] +","+ target[z]+","+Tr1.getStats().toString2());
 builder2.append('\n');
 	}
 }
@@ -122,7 +120,7 @@ try {
 	e.printStackTrace();
 }
 
-String Collist3 = "Loss," + "Target,"+"NumTrades,"+ "Win%,"+ "AvrgPL%," +"LongWin%,"+"NumShort,"+"Shortwin%,"+"AvrgProfitShort,"+"AvrgProfitLong,"+"HoldPeriod,";
+String Collist3 = "Loss," + "Target,"+"NumTrades,"+ "Win%,"+ "NumLong,"+ "AvrgPL%," +"LongWin%,"+"NumShort,"+"Shortwin%,"+"AvrgProfitShort,"+"AvrgProfitLong,"+"HoldingPeriod,";
 builder3.append(Collist3 + "\n");
 
 for(int k =0; k <  4; k++) {
@@ -138,7 +136,7 @@ tradeArray Tr2 = simETF.getTrades();
 
 Tr1.addArray(Tr2);
 
-builder3.append(loss[k] + ","+ target[z]+","+Tr1.getStats().toString2());
+builder3.append(loss[k] +","+ target[z]+"," +Tr1.getStats().toString2());
 builder3.append('\n');
 	}
 }
@@ -149,14 +147,14 @@ pw3.close();
 
 
 
-/*IGNORE: THIS IS NOT PART OF PROJECT
+//IGNORE: THIS IS NOT PART OF PROJECT
 //Encription Test 
-String passcode = EnDecriptor.Encriptor("Mucho dinero en la Computer Science"+ " " +"Chcę jeść dobre polskie jedzenie");
+//String passcode = EnDecriptor.Encriptor("Mucho dinero en la Computer Science"+ " " +"Chcę jeść dobre polskie jedzenie");
 //System.out.println(passcode);
 
-System.out.println(EnDecriptor.Decriptor(passcode)); 
+//System.out.println(EnDecriptor.Decriptor(passcode)); 
 
-*/
+
 
 
 
