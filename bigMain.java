@@ -56,7 +56,7 @@ try {
 }
 
 
-String Collist = "Loss," + " "+ "Target,"+"NumTrades,"+ "Win%,"+ "NumLong,"+ "AvrgPL%," +"LongWin%,"+"NumShort,"+"Shortwin%,"+"AvrgProfitShort,"+"AvrgProfitLong,"+"HoldingPeriod";
+String Collist = "Loss," + " "+ "Target,"+"NumTrades,"+ "NumLong,"+ "NumShort,"+ "%Winners," +"AveragePL%,"+"AvrgHoldingPeriod,"+"WinnerLong,"+"AvrgPLLong,"+"WinShort,"+"AvrgPLShort";
 builder.append(Collist + "\n");
 
 for(int k =0; k <  4; k++) {
@@ -88,7 +88,7 @@ try {
 	e.printStackTrace();
 }
 
-String Collist2 = "Loss," + "Target,"+"NumTrades,"+ "Win%,"+ "NumLong,"+ "AvrgPL%," +"LongWin%,"+"NumShort,"+"Shortwin%,"+"AvrgProfitShort,"+"AvrgProfitLong,"+ "HoldingPeriod,";
+String Collist2 = "Loss," + "Target,"+"NumTrades,"+ "NumLong,"+ "NumShort,"+ "%Winners," +"AveragePL%,"+"AvrgHoldingPeriod,"+"WinnerLong,"+"AvrgPLLong,"+"WinShort,"+"AvrgPLShort";
 builder2.append(Collist2 + "\n");
 
 for(int k =0; k <  4; k++) {
@@ -120,7 +120,7 @@ try {
 	e.printStackTrace();
 }
 
-String Collist3 = "Loss," + "Target,"+"NumTrades,"+ "Win%,"+ "NumLong,"+ "AvrgPL%," +"LongWin%,"+"NumShort,"+"Shortwin%,"+"AvrgProfitShort,"+"AvrgProfitLong,"+"HoldingPeriod,";
+String Collist3 = "Loss," + "Target,"+"NumTrades,"+ "NumLong,"+ "NumShort,"+ "%Winners," +"AveragePL%,"+"AvrgHoldingPeriod,"+"WinnerLong,"+"AvrgPLLong,"+"WinShort,"+"AvrgPLShort";
 builder3.append(Collist3 + "\n");
 
 for(int k =0; k <  4; k++) {
@@ -146,14 +146,14 @@ pw3.close();
 
 
 
-
+/*
 //IGNORE: THIS IS NOT PART OF PROJECT
 //Encription Test 
-//String passcode = EnDecriptor.Encriptor("Mucho dinero en la Computer Science"+ " " +"Chcę jeść dobre polskie jedzenie");
-//System.out.println(passcode);
+String passcode = EnDecriptor.Encriptor("Mucho dinero en la Computer Science"+ " " +"Chcę jeść dobre polskie jedzenie");
+System.out.println(passcode);
 
-//System.out.println(EnDecriptor.Decriptor(passcode)); 
-
+System.out.println(EnDecriptor.Decriptor(passcode)); 
+*/
 
 
 

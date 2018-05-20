@@ -43,14 +43,18 @@ double PercentLongwinners = (double)longWinners/numberLong * 100.0;
 double PercentShortwin = (double)shortWinners/numberShort*100.0;
 
 
+String s = "NumofTrades:"+numberOfTrades +"\tNumLong:" + numberLong + "\t NumShort:"+ numberShort+"\tWinners:" + df.format(PercentWinners)+"%" 
+			+"\tAvrgPL:" +df.format(AveragePLpercent)+"%" + "\tHoldingPeriod:"+AverageHoldingPeriod + "days" +"\tLongwinners:" +df.format(PercentLongwinners)+"%"+
+			"\tAvrPLlong:"+df.format(AverageProfitLong) + "\tShortwinners:" + df.format(PercentShortwin)+"%" +"\tAvrPLShort:" + df.format(AverageProfitShort);
 
+			return s;
 
-
+/*Original before change
 String s ="NumOfTrades: "+numberOfTrades + "\tWinners: " + df.format(PercentWinners)+"%"+"\tNumLong:"+ numberLong + "\tAvrgPLpercent: " +df.format(AveragePLpercent)+"%"+ 
 		"\tLongwinners: " +df.format(PercentLongwinners)+"%"+"\tNumShort:" + numberShort + "\tShortwinners: " + df.format(PercentShortwin)+"%"+ 
 		"\tAvrgProfitShort:"+df.format(AverageProfitShort) +"\tAvrgProfitLong:"+df.format(AverageProfitLong) +"\tHoldingPeriod:"+AverageHoldingPeriod + "days";
 
-		return s; 
+		return s; */
 	}
 
 
@@ -69,6 +73,8 @@ public String toString2() {
 
 DecimalFormat df2 = new DecimalFormat("#0.00");
 
+
+
 	double AveragePLpercent = ((totalWinnings + totalLoss) / numberOfTrades);
 	double AverageProfitShort =(totalShortWinnings - totalShortLoss / numberShortDays);
 	double AverageProfitLong = ((totalLongWinnings + totalLongLoss)/numberLong);
@@ -80,8 +86,9 @@ DecimalFormat df2 = new DecimalFormat("#0.00");
 	
 
 
-String s =numberOfTrades + "," + df2.format(PercentWinners)+"%"+ "," +numberLong+ "," +df2.format(AveragePLpercent)+"%"+ "," +df2.format(PercentLongwinners)+"%"
-		+","+numberShort+ ","+ PercentShortwin+"%"+ "," +df2.format(AverageProfitShort)+ ","+df2.format(AverageProfitLong) + ","+AverageHoldingPeriod;
+String s =numberOfTrades + "," + numberLong+ "," + numberShort + "," + df2.format(PercentWinners)+"%" + "," +df2.format(AveragePLpercent)+"%"+ "," + AverageHoldingPeriod +"," 
+		+df2.format(PercentLongwinners)+"%" + "," + df2.format(AverageProfitLong) +","+df2.format(PercentShortwin)+"%"+ "," + df2.format(AverageProfitShort);
+	
 
 			return s; 
 		}
